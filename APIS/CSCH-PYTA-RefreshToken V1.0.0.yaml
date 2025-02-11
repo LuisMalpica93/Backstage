@@ -9,7 +9,7 @@ spec:
   type: openapi
   lifecycle: production
   owner: team-authentication
-  definition:
+  definition: |
     openapi: 3.0.1
     info:
       title: CSCH-PYTA-RefreshToken
