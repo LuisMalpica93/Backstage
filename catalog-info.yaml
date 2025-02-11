@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: csch-pyta-refreshtoken
+  description: This API provides a refresh token to obtain a new access token when the current one expires.
+  # Añadir anotaciones si lo necesitas
+  # annotations:
+  #   github.com/project-slug: backstage/backstage
+  #   backstage.io/techdocs-ref: dir:.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: john@example.com
+  definitions:
+    - url: https://raw.githubusercontent.com/LuisMalpica93/Backstage/refs/heads/main/Contratos/CSCH-PYTA-RefreshToken%20V1.0.0.yaml
