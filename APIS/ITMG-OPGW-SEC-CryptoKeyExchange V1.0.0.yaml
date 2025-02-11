@@ -1,0 +1,206 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ITMG-OPGW-SEC-CryptoKeyExchange
+  description: >
+    Service that provides the means for encryption key exchange using the Diffie-Hellman scheme.
+    After following the process, both the client and the server will have the same shared key without having to have sent the key explicitly.
+    The sessionId is the server-side identifier to locate the shared key.
+    The contract is based on BIAN version 11.
+  version: 1.0.0
+spec:
+  type: openapi
+  lifecycle: production
+  owner: your-team-name
+  definition:
+    openapi: 3.0.1
+    info:
+      title: ITMG-OPGW-SEC-CryptoKeyExchange
+      description: Service that provides the means for encryption key exchange using the Diffie-Hellman scheme.
+      version: 1.0.0
+    servers:
+      - url: wso2.apiman.invex
+        description: Dev
+    paths:
+      /api/v1/ITManagement/OperationalGateway/PublicKeys:
+        get:
+          summary: RqCR- Request the public key from the server.
+          description: The client requests the public key from the server. The sessionId is also received, which will be the identifier with which the server can retrieve the values for the End to End (E2E) encryption process shared with the client.
+          tags:
+            - CR Generation Controller
+          parameters:
+            - $ref: '#/components/parameters/Authorization'
+            - $ref: '#/components/parameters/User-Agent'
+            - $ref: '#/components/parameters/Date'
+            - $ref: '#/components/parameters/Channel-Id'
+            - $ref: '#/components/parameters/X-brand-device'
+            - $ref: '#/components/parameters/X-app-version'
+            - $ref: '#/components/parameters/X-os-version'
+            - $ref: '#/components/parameters/X-os'
+            - $ref: '#/components/parameters/X-app-device-uid'
+            - $ref: '#/components/parameters/X-tx-id'
+            - $ref: '#/components/parameters/X-user-location'
+            - $ref: '#/components/parameters/tnxv'
+            - $ref: '#/components/parameters/contextId'
+          responses:
+            '200':
+              $ref: '#/components/responses/ServerPublicKeyModelResponse'
+            '400':
+              $ref: '#/components/responses/BadRequest'
+            '403':
+              $ref: '#/components/responses/Forbidden'
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '408':
+              $ref: '#/components/responses/TimeOut'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+
+      /api/v1/ITManagement/OperationalGateway/RegisterPublicKeys:
+        post:
+          summary: RqCR- Register public client key
+          description: >
+            The client sends the client public key to the server. At this moment both the client and the server exchanged their public keys,
+            both the client and server can calculate the shared key that will be used as the AES key for E2E encryption.
+          tags:
+            - CR Generation Controller
+          parameters:
+            - $ref: '#/components/parameters/Authorization'
+            - $ref: '#/components/parameters/Content-Type'
+            - $ref: '#/components/parameters/Accept'
+            - $ref: '#/components/parameters/Content-Length'
+            - $ref: '#/components/parameters/User-Agent'
+            - $ref: '#/components/parameters/Date'
+            - $ref: '#/components/parameters/Channel-Id'
+            - $ref: '#/components/parameters/X-brand-device'
+            - $ref: '#/components/parameters/X-app-version'
+            - $ref: '#/components/parameters/X-os-version'
+            - $ref: '#/components/parameters/X-os'
+            - $ref: '#/components/parameters/X-app-device-uid'
+            - $ref: '#/components/parameters/X-tx-id'
+            - $ref: '#/components/parameters/X-user-location'
+            - $ref: '#/components/parameters/tnxv'
+            - $ref: '#/components/parameters/contextId'
+          requestBody:
+            $ref: '#/components/requestBodies/ClientDataRequest'
+          responses:
+            '204':
+              description: Shared key generated successfully.
+              content:
+                application/json:
+                  schema:
+                    type: object
+            '400':
+              $ref: '#/components/responses/BadRequest'
+            '403':
+              $ref: '#/components/responses/Forbidden'
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '408':
+              $ref: '#/components/responses/TimeOut'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+
+    components:
+      schemas:
+        HTTPError:
+          type: object
+          properties:
+            type:
+              type: string
+            code:
+              type: string
+            details:
+              type: string
+            location:
+              type: string
+            traceId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+          description: Schema representing an HTTP error response.
+
+        ClientDataRequest:
+          type: object
+          properties:
+            clientKey:
+              $ref: '#/components/schemas/ClientPublicKeyModel'
+
+        ClientPublicKeyModel:
+          type: object
+          properties:
+            clientPublicKey:
+              type: string
+              description: Public key generated by the client for Diffie-Hellman algorithm.
+              example: MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE3mxqXR9CHtfqxMinhqyiQ7kG/GUv3y6KRJmkTDyaCZc6cUqJ4mQTpePPRKCRJuyz2XCoYxmugkDIOivzN93Zmw==
+
+        ServerPublicKeyModel:
+          type: object
+          properties:
+            serverPublicKey:
+              type: string
+              description: Public key managed by the server for Diffie-Hellman algorithm.
+              example: MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHqd/y+EWRegrHrFTaD09dBf3G3O8BtDHb1oZqLAS7lJjPZiobZtRSa9loSYzb/0rDTWDb0l1+h0re3OE46PLbQ==
+            contextId:
+              type: string
+              format: uuid
+              description: Identifier used as a key in the backend to save and retrieve data associated with the handshake process.
+
+      parameters:
+        Authorization:
+          name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Application token.
+          example: 77128ffa-6201-3c4a-939a-e5d0b2343b29
+
+        # Add other parameters here
+
+      requestBodies:
+        ClientDataRequest:
+          description: Represents the key generation request through a secure channel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientDataRequest"
+
+      responses:
+        BadRequest:
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        Forbidden:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        NotFound:
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        TimeOut:
+          description: TimeOut
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        InternalServerError:
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+
+        ServerPublicKeyModelResponse:
+          description: Shared key generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerPublicKeyModel'
