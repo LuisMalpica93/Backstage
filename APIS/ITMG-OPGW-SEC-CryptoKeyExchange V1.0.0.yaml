@@ -11,7 +11,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner: your-team-name
+  owner: team-authentication
   definition: |
     openapi: 3.0.1
     info:
