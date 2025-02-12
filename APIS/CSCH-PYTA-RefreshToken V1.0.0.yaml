@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: csch-pyta-refreshtoken
+  name: CSCH-PYTA-RefreshToken
   description: This service provides a refresh token to obtain a new access token when the current one expires.
   annotations:
     backstage.io/techdocs-ref: dir:.
