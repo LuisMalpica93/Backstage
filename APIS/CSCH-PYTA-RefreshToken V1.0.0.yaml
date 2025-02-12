@@ -11,336 +11,297 @@ spec:
   owner: team-authentication
   definition: |
     openapi: 3.0.1
-info:
-  title: CSCH-PYTA-RefreshToken
-  description:  This service provides a refresh token to obtain a new access token when the current one expires. The contract is based on BIAN version 11
-
-  version: 1.0.0
-
-servers:
-  - url: wso2.apiman.invex
-    description: Dev
-    
-paths:
-  /api/v1/CrossChannel/PartyAuthentication/Update:
-    post:
-    
-      parameters:
-      
-        - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/Content-Length'
-        - $ref: '#/components/parameters/User-Agent'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Channel-Id'
-        - $ref: '#/components/parameters/X-brand-device'
-        - $ref: '#/components/parameters/X-app-version'
-        - $ref: '#/components/parameters/X-os-version'
-        - $ref: '#/components/parameters/X-os'
-        - $ref: '#/components/parameters/X-app-device-uid'
-        - $ref: '#/components/parameters/X-tx-id'
-        - $ref: '#/components/parameters/X-user-location'
-        - $ref: '#/components/parameters/tnxv'
-        
-        
-      tags:
-        - CR - PartyAuthenticationAssessment
-      summary: RqCR - Request a Customer’s Authentication Update
-      description: This endpoint allows you to update or retrieve a new refresh token for the user
-     
-      requestBody:
-        $ref: '#/components/requestBodies/TokenRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-          
-components:
-  schemas:
-    HTTPError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of the error (e.g., client error, server error).
-          example: "Error"
-        code:
-          type: string
-          description: A specific error code.
-          example: "400"
-        details:
-          type: string
-          description: Detailed information about the error.
-          example: "Invalid request parameters"
-        location:
-          type: string
-          description: The location where the error occurred (e.g., a URL or endpoint).
-          example: "/api/v1/resource"
-        traceId:
-          type: string
-          description: A unique identifier for the error, useful for troubleshooting.
-          example: "f4d0a837-56b8-4baf-bbfe-9294a34331bc"
-        timestamp:
-          type: string
-          format: date-time
-          description: The timestamp when the error occurred.
-          example: "2025-01-30T14:35:58Z"
-      description: Schema representing an HTTP error response.
-    
-    authToken:
-      type: object
-      properties:
-        refreshToken:
-          type: string
-          description: A token used to obtain a new access token after the current one expires.
-      description: Represents a token used for authentication and session management.    
-          
-    TokenResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: A token used to authenticate and access protected resources.
-        refreshToken:
-          type: string
-          description: A token used to obtain a new access token after the current one expires.
-      description: Response containing an access token and a refresh token for authentication.    
-          
-    TokenRequest:
-      type: object
-      properties:
-        refreshToken:
-          type: string
-          description: The refresh token used to request a new access token.
-      description: Request body containing the token information for authentication.    
-      
-    AuthToken:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: "JWT access token for authentication"
-        refreshToken:
-          type: string
-          description: "Refresh token to obtain a new access token"
-          
-    AuthTokenResponse:
-      type: object
-      properties:
-        authToken:
-          $ref: "#/components/schemas/AuthToken"
-          
-       
-  responses:
-    BadRequest:
-      description: BadRequest
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-    NotFound:
-      description: NotFound
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-    TooManyRequests:
-      description: TooManyRequests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-    InternalServerError:
-      description: InternalServerError
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPError'
-
-    TokenResponse:
-      description: Successful response containing access and refresh tokens
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TokenResponse'  
-            
-    AuthResponse:
-      description: "Successful authentication response"
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/AuthTokenResponse"        
-
-
-  parameters:
-  
-      Authorization:
-        name: Authorization
-        in: header
-        schema:
-          type: string
-          description: Token de aplicación
-          example: 77128ffa-6201-3c4a-939a-e5d0b2343b29
-      
-      Content-Type:
-        name: Content-Type
-        in: header
-        schema:
-          type: string
-          description: Content-Type
-          example: application/json
-          
-      Accept:    
-          name: Accept
-          in: header
-          schema:
-           type: string
-          description: Accept
-          example: application/json
-      
-      Content-Length:  
-          name: Content-Length
-          in: header
-          schema: 
-           type: integer
-          description: Content-Length
-          example: 142
-          
-      User-Agent:    
-          name: User-Agent
-          in: header
-          schema: 
-           type: integer
-          description: Content-Length 
-          example: 142546
-          
-      Date: 
-          name: Date
-          in: header
-          schema: 
-           type: string
-           format: date
-          description: Timestamp de la petición (dd/mm/yyyy hh:mm:ss)
-          example: 15/01/2025 16:35:58
-          
-      Channel-Id:    
-          name: channel-id
+  info:
+    title: CSCH-PYTA-RefreshToken
+    description:  This service provides a refresh token to obtain a new access token when the current one expires. The contract is based on BIAN version 11
+    version: 1.0.0
+  servers:
+    - url: wso2.apiman.invex
+      description: Dev 
+  paths:
+    /api/v1/CrossChannel/PartyAuthentication/Update:
+      post:
+        parameters:
+          - $ref: '#/components/parameters/Authorization'
+          - $ref: '#/components/parameters/Content-Type'
+          - $ref: '#/components/parameters/Accept'
+          - $ref: '#/components/parameters/Content-Length'
+          - $ref: '#/components/parameters/User-Agent'
+          - $ref: '#/components/parameters/Date'
+          - $ref: '#/components/parameters/Channel-Id'
+          - $ref: '#/components/parameters/X-brand-device'
+          - $ref: '#/components/parameters/X-app-version'
+          - $ref: '#/components/parameters/X-os-version'
+          - $ref: '#/components/parameters/X-os'
+          - $ref: '#/components/parameters/X-app-device-uid'
+          - $ref: '#/components/parameters/X-tx-id'
+          - $ref: '#/components/parameters/X-user-location'
+          - $ref: '#/components/parameters/tnxv'  
+        tags:
+          - CR - PartyAuthenticationAssessment
+        summary: RqCR - Request a Customer’s Authentication Update
+        description: This endpoint allows you to update or retrieve a new refresh token for the user
+        requestBody:
+          $ref: '#/components/requestBodies/TokenRequest'
+        responses:
+          '200':
+            $ref: '#/components/responses/AuthResponse'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Forbidden'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '429':
+            $ref: '#/components/responses/TooManyRequests'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+  components:
+    schemas:
+      HTTPError:
+        type: object
+        properties:
+          type:
+            type: string
+            description: The type of the error (e.g., client error, server error).
+            example: "Error"
+          code:
+            type: string
+            description: A specific error code.
+            example: "400"
+          details:
+            type: string
+            description: Detailed information about the error.
+            example: "Invalid request parameters"
+          location:
+            type: string
+            description: The location where the error occurred (e.g., a URL or endpoint).
+            example: "/api/v1/resource"
+          traceId:
+            type: string
+            description: A unique identifier for the error, useful for troubleshooting.
+            example: "f4d0a837-56b8-4baf-bbfe-9294a34331bc"
+          timestamp:
+            type: string
+            format: date-time
+            description: The timestamp when the error occurred.
+            example: "2025-01-30T14:35:58Z"
+        description: Schema representing an HTTP error response.
+      authToken:
+        type: object
+        properties:
+          refreshToken:
+            type: string
+            description: A token used to obtain a new access token after the current one expires.
+        description: Represents a token used for authentication and session management.    
+      TokenResponse:
+        type: object
+        properties:
+          accessToken:
+            type: string
+            description: A token used to authenticate and access protected resources.
+          refreshToken:
+            type: string
+            description: A token used to obtain a new access token after the current one expires.
+        description: Response containing an access token and a refresh token for authentication.    
+      TokenRequest:
+        type: object
+        properties:
+          refreshToken:
+            type: string
+            description: The refresh token used to request a new access token.
+        description: Request body containing the token information for authentication.
+      AuthToken:
+        type: object
+        properties:
+          accessToken:
+            type: string
+            description: "JWT access token for authentication"
+          refreshToken:
+            type: string
+            description: "Refresh token to obtain a new access token"    
+      AuthTokenResponse:
+        type: object
+        properties:
+          authToken:
+            $ref: "#/components/schemas/AuthToken"
+    responses:
+      BadRequest:
+        description: BadRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      Unauthorized:
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      Forbidden:
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      NotFound:
+        description: NotFound
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      TooManyRequests:
+        description: TooManyRequests
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      InternalServerError:
+        description: InternalServerError
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HTTPError'
+      TokenResponse:
+        description: Successful response containing access and refresh tokens
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenResponse'  
+      AuthResponse:
+        description: "Successful authentication response"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthTokenResponse"
+    parameters:
+        Authorization:
+          name: Authorization
           in: header
           schema:
             type: string
-          description: Constante ONE para la aplicación, se utiliza para la traza e identificación de la petición de origen.
-          example: ONE
-          
-      X-brand-device:    
-          name: X-brand-device
+            description: Token de aplicación
+            example: 77128ffa-6201-3c4a-939a-e5d0b2343b29
+        Content-Type:
+          name: Content-Type
           in: header
-          schema: 
-           type: string
-          description: Fabricante del dispositivo (Apple, Samsung, Google, Oppo, etc..)
-          example: Samsung
-          
-      X-app-version:   
-          name: X-app-version
-          in: header
-          schema: 
-           type: number
-           format: float
-          description: Versión del aplicativo que se está ejecutando (1.0.0, 1.0.1, 2.0.0, etc…)
-          example: 1.0.0
-      
-      X-app-device-model:    
-          name: X-app-device-model
-          in: header
-          schema: 
-           type: string
-          description: Modelo del dispositivo (SM-900, iPhone 8, iPhone X, moto-g)
-          example: SM-900
-          
-      X-os-version:
-          name: X-os-version
-          in: header
-          schema: 
-           type: number
-           format: float
-          description: Versión de sistema operativo (16.1, 15.0, 12, etc…)
-          example: 16.1
-          
-      X-os:
-          name: X-os
-          in: header
-          schema: 
-           type: string
-          description: Sistema operativo del dispositivo (android, ios, etc…)
-          example: android
-          
-      X-app-device-uid:    
-          name: X-app-device-uid
-          in: header
-          schema: 
-           type: string
-          description: Identificador del dispositivo (Android deviceId, iOS UDI, 34470f8cea3d33e9,  611975b5-5d14-f041-5ef8-b19b1f9a0d4f)
-          example: 34470f8cea3d33e9
-      
-      X-tx-id:    
-          name: X-tx-id
-          in: header
-          schema: 
-           type: string
-          description: ID de request, UUID random por sesión o pre-sesión.
-          example: 07f48e1e-c942-4652-bd5b-27437561e5f1
-          
-      X-user-location:    
-          name: X-user-location
-          in: header
-          schema: 
-           type: string
-          description: Se enviará una cadena cifrada en AES con el siguiente formato user|latitude|longitude
-          example: B7doPjC3T-2tKujLRsuB8F69gyy02WfDg0GIbFIrPTU=
-        
-      tnxv:  
-          name: tnxv
-          in: header
-          schema: 
-           type: string
-          description: (WAF/aplicación)
-          
-  requestBodies:
-
-    TokenRequest:
-      description: Request body for token generation
-      required: true
-      content:
-        application/json:
           schema:
-            type: object
-            properties:
-              authToken:
-                type: object
-                properties:
-                  refreshToken:
-                    type: string
-    
+            type: string
+            description: Content-Type
+            example: application/json
+        Accept:    
+            name: Accept
+            in: header
+            schema:
+             type: string
+            description: Accept
+            example: application/json
+        Content-Length:  
+            name: Content-Length
+            in: header
+            schema: 
+             type: integer
+            description: Content-Length
+            example: 142
+        User-Agent:    
+            name: User-Agent
+            in: header
+            schema: 
+             type: integer
+            description: Content-Length 
+            example: 142546
+        Date: 
+            name: Date
+            in: header
+            schema: 
+             type: string
+             format: date
+            description: Timestamp de la petición (dd/mm/yyyy hh:mm:ss)
+            example: 15/01/2025 16:35:58
+        Channel-Id:    
+            name: channel-id
+            in: header
+            schema:
+              type: string
+            description: Constante ONE para la aplicación, se utiliza para la traza e identificación de la petición de origen.
+            example: ONE
+        X-brand-device:    
+            name: X-brand-device
+            in: header
+            schema: 
+             type: string
+            description: Fabricante del dispositivo (Apple, Samsung, Google, Oppo, etc..)
+            example: Samsung
+        X-app-version:   
+            name: X-app-version
+            in: header
+            schema: 
+             type: number
+             format: float
+            description: Versión del aplicativo que se está ejecutando (1.0.0, 1.0.1, 2.0.0, etc…)
+            example: 1.0.0
+        X-app-device-model:    
+            name: X-app-device-model
+            in: header
+            schema: 
+             type: string
+            description: Modelo del dispositivo (SM-900, iPhone 8, iPhone X, moto-g)
+            example: SM-900
+        X-os-version:
+            name: X-os-version
+            in: header
+            schema: 
+             type: number
+             format: float
+            description: Versión de sistema operativo (16.1, 15.0, 12, etc…)
+            example: 16.1
+        X-os:
+            name: X-os
+            in: header
+            schema: 
+             type: string
+            description: Sistema operativo del dispositivo (android, ios, etc…)
+            example: android
+        X-app-device-uid:    
+            name: X-app-device-uid
+            in: header
+            schema: 
+             type: string
+            description: Identificador del dispositivo (Android deviceId, iOS UDI, 34470f8cea3d33e9,  611975b5-5d14-f041-5ef8-b19b1f9a0d4f)
+            example: 34470f8cea3d33e9
+        X-tx-id:    
+            name: X-tx-id
+            in: header
+            schema: 
+             type: string
+            description: ID de request, UUID random por sesión o pre-sesión.
+            example: 07f48e1e-c942-4652-bd5b-27437561e5f1
+        X-user-location:    
+            name: X-user-location
+            in: header
+            schema: 
+             type: string
+            description: Se enviará una cadena cifrada en AES con el siguiente formato user|latitude|longitude
+            example: B7doPjC3T-2tKujLRsuB8F69gyy02WfDg0GIbFIrPTU=
+        tnxv:  
+            name: tnxv
+            in: header
+            schema: 
+             type: string
+            description: (WAF/aplicación)
+    requestBodies:
+      TokenRequest:
+        description: Request body for token generation
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authToken:
+                  type: object
+                  properties:
+                    refreshToken:
+                      type: string
