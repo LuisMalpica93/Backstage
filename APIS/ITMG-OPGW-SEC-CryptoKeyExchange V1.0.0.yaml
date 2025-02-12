@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: ITMG-OPGW-SEC-CryptoKeyExchange
-  description: >
+  description: |
     Service that provides the means for encryption key exchange using the Diffie-Hellman scheme.
     After following the process, both the client and the server will have the same shared key without having to have sent the key explicitly.
     The sessionId is the server-side identifier to locate the shared key.
@@ -55,7 +55,7 @@ spec:
               $ref: '#/components/responses/TimeOut'
             '500':
               $ref: '#/components/responses/InternalServerError'
-
+      
       /api/v1/ITManagement/OperationalGateway/RegisterPublicKeys:
         post:
           summary: RqCR- Register public client key
@@ -100,7 +100,6 @@ spec:
               $ref: '#/components/responses/TimeOut'
             '500':
               $ref: '#/components/responses/InternalServerError'
-
     components:
       schemas:
         HTTPError:
