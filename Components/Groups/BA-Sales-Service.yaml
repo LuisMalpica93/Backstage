@@ -5,8 +5,8 @@ metadata:
   description: Business area
 spec:
   type: business-unit
+  parent: invex
   profile:
     displayName: Sales and service
-  parent: WSO2-API_MANAGER
   children:
     - cross-channel
