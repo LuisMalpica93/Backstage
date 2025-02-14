@@ -5,7 +5,6 @@ metadata:
   description: Business area
 spec:
   type: business-unit
-  owner: WSO2-API_MANAGER
   profile:
     displayName: Sales and service
   children:
