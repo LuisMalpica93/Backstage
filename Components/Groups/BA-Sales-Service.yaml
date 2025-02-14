@@ -7,5 +7,6 @@ spec:
   type: business-unit
   profile:
     displayName: Sales and service
+  parent: WSO2-API_MANAGER
   children:
     - cross-channel
