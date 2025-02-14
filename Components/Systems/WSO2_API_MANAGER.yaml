@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: WSO2-API_MANAGER
+  description: WSO2 API Manager es una plataforma de gestión de APIs que permite diseñar, publicar, consumir y monitorear APIs de manera segura. Ofrece control de acceso, análisis, monetización y soporte para despliegues híbridos y en la nube.
+spec:
+  owner: invex
+  domain: seguridad
