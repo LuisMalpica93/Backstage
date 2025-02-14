@@ -1,9 +1,0 @@
-apiVersion: backstage.io/v1alpha1
-kind: Domain
-metadata:
-  name: seguridad
-  description: Dominio relacionado con sistemas de seguridad y autenticación.
-spec:
-  owner: invex
-  system:
-    - WSO2-API_MANAGER
