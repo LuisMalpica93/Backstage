@@ -9,6 +9,7 @@ spec:
   type: openapi
   lifecycle: production
   owner: party-authentication
+  system: WSO2-API_MANAGER
   definition: |
     openapi: 3.0.1
     info:
