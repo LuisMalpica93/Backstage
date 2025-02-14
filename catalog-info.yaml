@@ -1,15 +1,9 @@
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Location
 metadata:
-  name: csch-pyta-refreshtoken
-  description: This API provides a refresh token to obtain a new access token when the current one expires.
-  # Añadir anotaciones si lo necesitas
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  name: invex-catalog
+  description: Catálogo centralizado de Invex
 spec:
-  type: openapi
-  lifecycle: production
-  owner: john@example.com
-  definitions:
-    - url: https://raw.githubusercontent.com/LuisMalpica93/Backstage/refs/heads/main/Contratos/CSCH-PYTA-RefreshToken%20V1.0.0.yaml
+  targets:
+    - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/Invex.yaml
+    - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Systems/WSO2_API_MANAGER.yaml
