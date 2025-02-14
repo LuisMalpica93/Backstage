@@ -8,7 +8,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: deprecated
-  owner: cross-channel
+  owner: party-authentication
   system: WSO2-API_MANAGER
   definition: |
     openapi: 3.0.1
