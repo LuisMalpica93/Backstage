@@ -9,6 +9,7 @@ spec:
   type: openapi
   lifecycle: deprecated
   owner: cross-channel
+  system: WSO2-API_MANAGER
   definition: |
     openapi: 3.0.1
     info:
