@@ -11,6 +11,7 @@ spec:
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/Invex.yaml
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/BA-Sales-Service.yaml
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/BD-Cross-Channel.yaml
+    - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/SD-Party-Authentication.yaml
 
     # ----------------------------------------
     # Sistemas
