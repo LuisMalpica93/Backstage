@@ -7,4 +7,5 @@ spec:
   type: business-unit
   profile:
     displayName: Sales and service
-  children: []
+  children:
+    - cross-channel
