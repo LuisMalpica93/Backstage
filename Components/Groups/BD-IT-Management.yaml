@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: it-management
+  description: Business Domain
+spec:
+  type: business-unit
+  profile:
+    displayName: IT Management
+  parent: business-support
+  children:
+    - operational-gateway
