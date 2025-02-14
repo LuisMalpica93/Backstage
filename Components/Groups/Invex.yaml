@@ -1,1 +1,11 @@
-s
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: invex
+  description: Invex Banco es una institución financiera mexicana que ofrece soluciones bancarias, de inversión y crédito para personas y empresas. Se especializa en banca privada, tarjetas de crédito, financiamiento estructurado y administración de fondos de inversión.
+spec:
+  type: organization
+  profile:
+    displayName: Invex
+    email: invex@invex.com
+  children: []
