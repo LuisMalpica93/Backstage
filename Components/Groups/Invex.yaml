@@ -8,4 +8,5 @@ spec:
   profile:
     displayName: Invex
     email: invex@invex.com
-  children: []
+  children:
+    - sales-and-service
