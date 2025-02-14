@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: cross-channel
+  description: Business Domain
+spec:
+  owner: sales-and-service
+  type: business-unit
+  profile:
+    displayName: Cross channel
+  children: []
