@@ -1,0 +1,474 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: CSCH-PYTA-SEC-SessionManagement
+  description: |
+    This service provides a customer identify authentication for login and logout. The contract is based on BIAN version 11
+  version: 1.0.0
+spec:
+  type: openapi
+  lifecycle: production
+  owner: party-authentication
+  definition: |
+    openapi: 3.0.1
+    info:
+      title: CSCH-PYTA-SEC-SessionManagement 
+      description: This service provides a customer identify authentication for login and logout. The contract is based on BIAN version 11
+      
+      version: 1.0.0
+     
+    servers:
+      - url: wso2.apiman.invex
+        description: Dev
+        
+    paths:
+      '/api/v1/CrossChannel/PartyAuthentication/Terminate':
+        post:
+          tags:
+            - CR - PartyAuthenticationAssessment
+          summary: TrCR Terminate a Customer's Authentication Session
+          description: This operation handles the logout process for a user, terminating their session and ensuring that all authentication-related information is cleared.
+          
+          
+          parameters:
+          
+            - $ref: '#/components/parameters/Authorization'
+            - $ref: '#/components/parameters/Content-Type'
+            - $ref: '#/components/parameters/Accept'
+            - $ref: '#/components/parameters/Content-Length'
+            - $ref: '#/components/parameters/User-Agent'
+            - $ref: '#/components/parameters/Date'
+            - $ref: '#/components/parameters/Channel-Id'
+            - $ref: '#/components/parameters/X-brand-device'
+            - $ref: '#/components/parameters/X-app-version'
+            - $ref: '#/components/parameters/X-os-version'
+            - $ref: '#/components/parameters/X-os'
+            - $ref: '#/components/parameters/X-app-device-uid'
+            - $ref: '#/components/parameters/X-tx-id'
+            - $ref: '#/components/parameters/X-user-location'
+            - $ref: '#/components/parameters/tnxv'
+            - $ref: '#/components/parameters/X-session-id'
+            
+          
+          responses:
+            '200':
+              description: Operación correcta.
+            '400':
+              $ref: '#/components/responses/BadRequest'
+            '401':
+              $ref: '#/components/responses/Unauthorized'
+            '403':
+              $ref: '#/components/responses/Forbidden'
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '429':
+              $ref: '#/components/responses/TooManyRequests'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+              
+      
+      '/api/v1/CrossChannel/PartyAuthentication/Password/Evaluate':
+        post:
+          tags:
+            - BQ - Password 
+          summary: EvBQ Evaluate customer authenticity using passwords 
+          description:  This operation facilitates the login process for a user by verifying their credentials, specifically their password, to authenticate and grant access to the system.
+            The user provides their credentials (username and password), which are validated against the system.
+         
+          parameters:
+          
+            - $ref: '#/components/parameters/Authorization'
+            - $ref: '#/components/parameters/Content-Type'
+            - $ref: '#/components/parameters/Accept'
+            - $ref: '#/components/parameters/Content-Length'
+            - $ref: '#/components/parameters/User-Agent'
+            - $ref: '#/components/parameters/Date'
+            - $ref: '#/components/parameters/Channel-Id'
+            - $ref: '#/components/parameters/X-brand-device'
+            - $ref: '#/components/parameters/X-app-version'
+            - $ref: '#/components/parameters/X-os-version'
+            - $ref: '#/components/parameters/X-os'
+            - $ref: '#/components/parameters/X-app-device-uid'
+            - $ref: '#/components/parameters/X-tx-id'
+            - $ref: '#/components/parameters/X-user-location'
+            - $ref: '#/components/parameters/tnxv'
+            - $ref: '#/components/parameters/contextId'
+                
+          requestBody:
+          
+            $ref: '#/components/requestBodies/EvaluatePasswordRequest'
+            
+          responses:
+            '200':
+              $ref: '#/components/responses/FullAuthenticationPasswordResponse'
+            '400':
+              $ref: '#/components/responses/BadRequest'
+            '401':
+              $ref: '#/components/responses/Unauthorized'
+            '403':
+              $ref: '#/components/responses/Forbidden'
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '429':
+              $ref: '#/components/responses/TooManyRequests'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+              
+      
+    components:
+      schemas:
+      
+        HTTPError:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the error (e.g., client error, server error).
+              example: "Error"
+            code:
+              type: string
+              description: A specific error code.
+              example: "400"
+            details:
+              type: string
+              description: Detailed information about the error.
+              example: "Invalid request parameters"
+            location:
+              type: string
+              description: The location where the error occurred (e.g., a URL or endpoint).
+              example: "/api/v1/resource"
+            traceId:
+              type: string
+              description: A unique identifier for the error, useful for troubleshooting.
+              example: "f4d0a837-56b8-4baf-bbfe-9294a34331bc"
+            timestamp:
+              type: string
+              format: date-time
+              description: The timestamp when the error occurred.
+              example: "2025-01-30T14:35:58Z"
+          description: Schema representing an HTTP error response.
+    
+        Authentication:
+          type: object
+          properties:
+            partyauthenticationid:
+              type: string
+              description: Unique identifier for the authenticated user.
+            sessionId:
+              type: string
+              description: Unique identifier for the session.
+            accessToken:
+              type: string
+              description: Access token for authenticated requests.
+            refreshToken:
+              type: string
+              description: Token used to obtain a new access token.  
+          description: The unique identifier of the party    
+          
+        AuthenticationResponse:
+          type: object
+          properties:
+            AuthenticationResponse:
+              type: object
+              properties:
+                partyauthenticationid:
+                  type: string
+                  description: Unique identifier for the authenticated user.
+                sessionId:
+                  type: string
+                  description: Unique identifier for the session.
+                accessToken:
+                  type: string
+                  description: Access token for authenticated requests.
+                refreshToken:
+                  type: string
+                  description: Token used to obtain a new access token.
+          description: Indicates if the authentication was successful      
+        PartyAuthenticationResponse:
+          type: object
+          properties:
+            authenticationToken:
+              type: string
+              description: "Token generated for the authenticated session."
+      
+        AuthToken:
+          type: object
+          properties:
+            accessToken:
+              type: string
+              description: "The token used to authenticate subsequent API requests."
+            refreshToken:
+              type: string
+              description: "The token used to refresh the access token when it expires."
+            sessionId:
+              type: string
+              description: "The token used to refresh the access token when it expires."  
+          description: "object that contains the authentication tokens" 
+          
+        PartyAuthenticationAssessment:
+          type: object
+          properties:
+            CustomerReference:
+              type: string
+              description: Reference to the customer as the authentication subject
+              format: object
+          description: 'To test or assess an entity, possibly against some formal qualification or certification requirement within Party Authentication. '
+          
+        EvaluatePasswordRequest:
+          type: object
+          properties:
+            PartyAuthenticationAssessment:
+              type: object
+              properties:
+                CustomerReference:
+                  type: string
+                  description: "\n"
+                  format: object
+            Password:
+              type: object
+              properties:
+                AuthenticationReferenceDataValue:
+                  type: string
+                  description: "\n"
+                  format: string
+    
+          
+        PasswordResponse:
+          type: object
+          properties:
+            AuthenticationPasswordTestResult:
+              type: string
+              description: "Result of testing the party's authentication password"
+          description: "Object for testing the password authentication"
+     
+        FullAuthenticationPasswordResponse:
+          type: object
+          properties:
+            authToken:
+              $ref: '#/components/schemas/AuthToken'
+            passwordResponse:
+              $ref: '#/components/schemas/PasswordResponse'
+          description: "Response object containing both the authentication tokens and password test result" 
+      
+      
+      responses:
+      
+        BadRequest:
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        Unauthorized:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        Forbidden:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        NotFound:
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        TooManyRequests:
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        InternalServerError:
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        PartyAuthenticationAssessment:
+          description: Assessment of the authentication process for a party, including validation status and authentication method used
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartyAuthenticationAssessment'
+        AuthenticationResponse:
+          description: Response object containing authentication details, including session and token information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse' 
+        FullAuthenticationPasswordResponse:
+          description: Response object containing authentication details for a user session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullAuthenticationPasswordResponse'         
+    
+      parameters:
+      
+          Authorization:
+            name: Authorization
+            in: header
+            schema:
+              type: string
+              description: Token de aplicación
+              example: 77128ffa-6201-3c4a-939a-e5d0b2343b29
+          
+          Content-Type:
+            name: Content-Type
+            in: header
+            schema:
+              type: string
+              description: Content-Type
+              example: application/json
+              
+          Accept:    
+              name: Accept
+              in: header
+              schema:
+               type: string
+              description: Accept
+              example: application/json
+          
+          Content-Length:  
+              name: Content-Length
+              in: header
+              schema: 
+               type: integer
+              description: Content-Length
+              example: 142
+              
+          User-Agent:    
+              name: User-Agent
+              in: header
+              schema: 
+               type: integer
+              description: Content-Length 
+              example: 142546
+              
+          Date: 
+              name: Date
+              in: header
+              schema: 
+               type: string
+               format: date
+              description: Timestamp de la petición (dd/mm/yyyy hh:mm:ss)
+              example: 15/01/2025 16:35:58
+              
+          Channel-Id:    
+              name: channel-id
+              in: header
+              schema:
+                type: string
+              description: Constante ONE para la aplicación, se utiliza para la traza e identificación de la petición de origen.
+              example: ONE
+              
+          X-brand-device:    
+              name: X-brand-device
+              in: header
+              schema: 
+               type: string
+              description: Fabricante del dispositivo (Apple, Samsung, Google, Oppo, etc..)
+              example: Samsung
+              
+          X-app-version:   
+              name: X-app-version
+              in: header
+              schema: 
+               type: number
+               format: float
+              description: Versión del aplicativo que se está ejecutando (1.0.0, 1.0.1, 2.0.0, etc…)
+              example: 1.0.0
+          
+          X-app-device-model:    
+              name: X-app-device-model
+              in: header
+              schema: 
+               type: string
+              description: Modelo del dispositivo (SM-900, iPhone 8, iPhone X, moto-g)
+              example: SM-900
+              
+          X-os-version:
+              name: X-os-version
+              in: header
+              schema: 
+               type: number
+               format: float
+              description: Versión de sistema operativo (16.1, 15.0, 12, etc…)
+              example: 16.1
+              
+          X-os:
+              name: X-os
+              in: header
+              schema: 
+               type: string
+              description: Sistema operativo del dispositivo (android, ios, etc…)
+              example: android
+              
+          X-app-device-uid:    
+              name: X-app-device-uid
+              in: header
+              schema: 
+               type: string
+              description: Identificador del dispositivo (Android deviceId, iOS UDI, 34470f8cea3d33e9,  611975b5-5d14-f041-5ef8-b19b1f9a0d4f)
+              example: 34470f8cea3d33e9
+          
+          X-tx-id:    
+              name: X-tx-id
+              in: header
+              schema: 
+               type: string
+              description: ID de request, UUID random por sesión o pre-sesión.
+              example: 07f48e1e-c942-4652-bd5b-27437561e5f1
+              
+          X-user-location:    
+              name: X-user-location
+              in: header
+              schema: 
+               type: string
+              description: Se enviará una cadena cifrada en AES con el siguiente formato user|latitude|longitude
+              example: B7doPjC3T-2tKujLRsuB8F69gyy02WfDg0GIbFIrPTU=
+            
+          tnxv:  
+              name: tnxv
+              in: header
+              schema: 
+               type: string
+              description: (WAF/aplicación)
+              
+          X-session-id:    
+              name: X-session-id
+              in: header
+              schema: 
+               type: string
+              description: SID de sesión entregado por el servicio de login
+              example: 0debce55-f52c-4a59-a3cc-f7ccf522bf34  
+          
+          contextId:    
+              name: contextId
+              in: header
+              schema: 
+               type: string
+              description: Es una identificador para obtener la llave de cifrada
+              example: 3fa85f64-5717-4562-b3fc-2c963f66afa64       
+      
+      requestBodies:
+       
+        PartyAuthenticationAssessment:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartyAuthenticationAssessment'
+          required: true
+        
+     
+        EvaluatePasswordRequest:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluatePasswordRequest'
+          required: true
