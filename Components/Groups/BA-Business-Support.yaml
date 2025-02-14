@@ -1,1 +1,12 @@
-
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: business-support
+  description: Business area
+spec:
+  type: business-unit
+  parent: invex
+  profile:
+    displayName: Business Support
+  children:
+    - it-management
