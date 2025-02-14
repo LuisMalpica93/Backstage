@@ -6,4 +6,5 @@ metadata:
 spec:
   targets:
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/Invex.yaml
+    - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Domains/Security.yaml
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Systems/WSO2_API_MANAGER.yaml
