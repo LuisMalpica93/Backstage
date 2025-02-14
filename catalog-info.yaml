@@ -5,5 +5,16 @@ metadata:
   description: Catálogo centralizado de Invex
 spec:
   targets:
+    # ----------------------------------------
+    # Grupos
+    # ----------------------------------------
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Groups/Invex.yaml
+
+    # ----------------------------------------
+    # Sistemas
+    # ----------------------------------------
     - https://github.com/LuisMalpica93/Backstage/blob/main/Components/Systems/WSO2_API_MANAGER.yaml
+
+    # ----------------------------------------
+    # APIs
+    # ----------------------------------------
