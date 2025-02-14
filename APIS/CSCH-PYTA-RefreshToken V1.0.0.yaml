@@ -8,7 +8,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: deprecated
-  owner: team-authentication
+  owner: cross-channel
   definition: |
     openapi: 3.0.1
     info:
