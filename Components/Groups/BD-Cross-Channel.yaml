@@ -4,8 +4,8 @@ metadata:
   name: cross-channel
   description: Business Domain
 spec:
-  owner: sales-and-service
   type: business-unit
   profile:
-    displayName: Cross channel
+    displayName: Cross Channel
+  parent: sales-and-service
   children: []
