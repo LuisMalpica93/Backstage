@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: party-authentication
+  description: Service Domain
+spec:
+  type: business-unit
+  profile:
+    displayName: Party Authentication
+  parent: cross-channel
+  children: []
