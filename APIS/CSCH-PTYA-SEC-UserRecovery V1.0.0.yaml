@@ -1,0 +1,311 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: CSCH-PTYA-SEC-UserRecovery
+  description: |
+    This contract allows retrieving a user through their phone number. The contract is based on BIAN version 11
+  version: 1.0.0
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: party-authentication
+  system: WSO2-API_MANAGER
+  definition: |
+    openapi: 3.0.1
+    info:
+      title: CSCH-PTYA-SEC-UserRecovery 
+      description: This contract allows retrieving a user through their phone number. The contract is based on BIAN version 11
+      version: 1.0.0
+    
+    servers:
+      - url: wso2.apiman.invex
+        description: Dev
+    
+    paths:
+       /api/v1/CrossChannel/PartyAuthentication/userRecovery:
+        post:
+          parameters:
+            - $ref: '#/components/parameters/Authorization'
+            - $ref: '#/components/parameters/Content-Type'
+            - $ref: '#/components/parameters/Accept'
+            - $ref: '#/components/parameters/Content-Length'
+            - $ref: '#/components/parameters/User-Agent'
+            - $ref: '#/components/parameters/Date'
+            - $ref: '#/components/parameters/Channel-Id'
+            - $ref: '#/components/parameters/X-brand-device'
+            - $ref: '#/components/parameters/X-app-version'
+            - $ref: '#/components/parameters/X-os-version'
+            - $ref: '#/components/parameters/X-os'
+            - $ref: '#/components/parameters/X-app-device-uid'
+            - $ref: '#/components/parameters/X-tx-id'
+            - $ref: '#/components/parameters/X-user-location'
+            - $ref: '#/components/parameters/tnxv'
+          
+          tags:
+            - BQ - User Recovery
+          summary: UrBQ User Recovery refers to the process or service that allows the retrieval of a user account, such as a mobile phone number. 
+          description: This service allows the retrieval of a user account information based on their mobile phone number.
+    
+          requestBody:
+         
+            $ref: '#/components/requestBodies/RecoveryUserRequest' 
+    
+          responses:
+            '200':
+              description: User successfully recovered.
+              $ref: '#/components/responses/RecoveryUserResponse'
+            '400':
+              $ref: '#/components/responses/BadRequest'
+            '401':
+              $ref: '#/components/responses/Unauthorized'
+            '403':
+              $ref: '#/components/responses/Forbidden'
+            '404':
+              $ref: '#/components/responses/NotFound'
+            '429':
+              $ref: '#/components/responses/TooManyRequests'
+            '500':
+              $ref: '#/components/responses/InternalServerError'
+    
+    components:
+      schemas:
+        UserRecoveryRequest:
+          type: object
+          properties:
+            phoneNumber:
+              type: string
+              pattern: "^[0-9]{10}$"
+              description: User's mobile phone number to be retrieved.
+              example: "5512345678"
+            otp:
+              type: string
+              pattern: "^[0-9]{6}$"
+              description: Received OTP (One-Time Password). 
+              example: "123456"
+          description: Represents the user account recovery request.     
+        
+        UserRecoveryResponse:
+          type: object
+          properties:
+            customerReference:
+              type: string
+              format: email
+              description: User's email with the first three and last five characters masked.
+              example: "***rez@example.*****" 
+          description: Represents the response for the user recovery request. It contains the user's email with the first three and last five characters masked to ensure privacy and security.    
+        
+        HTTPError:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the error (e.g., client error, server error).
+              example: "Error"
+            code:
+              type: string
+              description: A specific error code.
+              example: "400"
+            details:
+              type: string
+              description: Detailed information about the error.
+              example: "Invalid request parameters"
+            location:
+              type: string
+              description: The location where the error occurred (e.g., a URL or endpoint).
+              example: "/api/v1/resource"
+            traceId:
+              type: string
+              description: A unique identifier for the error, useful for troubleshooting.
+              example: "f4d0a837-56b8-4baf-bbfe-9294a34331bc"
+            timestamp:
+              type: string
+              format: date-time
+              description: The timestamp when the error occurred.
+              example: "2025-01-30T14:35:58Z"
+          description: Schema representing an HTTP error response.
+    
+      parameters:
+      
+          Authorization:
+            name: Authorization
+            in: header
+            schema:
+              type: string
+            description: Application Token
+            example: "77128ffa-6201-3c4a-939a-e5d0b2343b29"
+          Content-Type:
+              name: Content-Type
+              in: header
+              schema: 
+               type: string
+              description: Content-Type
+              example: application/json
+          Accept:    
+                name: Accept
+                in: header
+                schema:
+                 type: string
+                description: Accept
+                example: application/json
+            
+          Content-Length:  
+                name: Content-Length
+                in: header
+                schema: 
+                 type: integer
+                description: Content-Length
+                example: 142
+                
+          User-Agent:    
+                name: User-Agent
+                in: header
+                schema: 
+                 type: integer
+                description: Content-Length 
+                example: 142546
+                
+          Date: 
+                name: Date
+                in: header
+                schema: 
+                 type: string
+                 format: date
+                description: Request Timestamp (dd/mm/yyyy hh:mm:ss)
+                example: 15/01/2025 16:35:58
+                
+          Channel-Id:    
+                name: channel-id
+                in: header
+                schema:
+                  type: string
+                description: ONE constant for the application, used for tracing and identifying the source request
+                example: ONE
+                
+          X-brand-device:    
+                name: X-brand-device
+                in: header
+                schema: 
+                 type: string
+                description: Device manufacturer(Apple, Samsung, Google, Oppo, etc..)
+                example: Samsung
+                
+          X-app-version:   
+                name: X-app-version
+                in: header
+                schema: 
+                 type: number
+                 format: float
+                description: Version of the application being executed (1.0.0, 1.0.1, 2.0.0, etc…)
+                example: 1.0.0
+            
+          X-app-device-model:    
+                name: X-app-device-model
+                in: header
+                schema: 
+                 type: string
+                description: Device Model (SM-900, iPhone 8, iPhone X, moto-g)
+                example: SM-900
+                
+          X-os-version:
+                name: X-os-version
+                in: header
+                schema: 
+                 type: number
+                 format: float
+                description: Operating system version(16.1, 15.0, 12, etc…)
+                example: 16.1
+                
+          X-os:
+                name: X-os
+                in: header
+                schema: 
+                 type: string
+                description: Device operating system (android, ios, etc…)
+                example: android
+                
+          X-app-device-uid:    
+                name: X-app-device-uid
+                in: header
+                schema: 
+                 type: string
+                description: Device identifier (Android deviceId, iOS UDI, 34470f8cea3d33e9,  611975b5-5d14-f041-5ef8-b19b1f9a0d4f)
+                example: 34470f8cea3d33e9
+            
+          X-tx-id:    
+                name: X-tx-id
+                in: header
+                schema: 
+                 type: string
+                description: Request ID, random UUID per session or pre-session.
+                example: 07f48e1e-c942-4652-bd5b-27437561e5f1
+                
+          X-user-location:    
+                name: X-user-location
+                in: header
+                schema: 
+                 type: string
+                description: "The string will be sent encrypted in AES with the following format: user|latitude|longitude"
+                example: B7doPjC3T-2tKujLRsuB8F69gyy02WfDg0GIbFIrPTU=
+              
+          tnxv:  
+                name: tnxv
+                in: header
+                schema: 
+                 type: string
+                description: (WAF/application)    
+    
+      responses:
+        BadRequest:
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        Unauthorized:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        Forbidden:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        NotFound:
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        TooManyRequests:
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        InternalServerError:
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+                
+        RecoveryUserResponse:
+          description: This request body is used to retrieve a user's information based on their mobile phone number.
+          content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/UserRecoveryResponse'
+                
+                
+      requestBodies:
+      
+        RecoveryUserRequest:
+           description: This request body is used to retrieve a user account based on their mobile phone number.
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/UserRecoveryRequest'
+           required: true
