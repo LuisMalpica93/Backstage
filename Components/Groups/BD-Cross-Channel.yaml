@@ -8,4 +8,5 @@ spec:
   profile:
     displayName: Cross Channel
   parent: sales-and-service
-  children: []
+  children:
+    - party-authentication
