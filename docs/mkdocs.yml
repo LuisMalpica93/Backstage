@@ -1,9 +1,7 @@
 
-### 📄 **`mkdocs.yml`** (Configuración de TechDocs)  
-```yaml
-site_name: "Documentación de APIs"
-nav:
-  - Home: index.md
-  - API: api.md
-plugins:
-  - techdocs-core
+# Documentación de APIs
+
+Bienvenido a la documentación técnica de nuestras APIs en Backstage.
+
+## 📌 APIs documentadas
+- [CSCH-PYTA-RefreshToken](refresh-token.md)
