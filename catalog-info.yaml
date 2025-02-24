@@ -6,8 +6,7 @@ metadata:
 spec:
   targets:
 
-    - https://github.com/LuisMalpica93/Backstage/blob/main/docs/index.md
-    - https://github.com/LuisMalpica93/Backstage/blob/main/docs/refresh-token.md
+    - https://github.com/LuisMalpica93/Backstage/blob/main/docs/
     # ----------------------------------------
     # Grupos
     # ----------------------------------------
