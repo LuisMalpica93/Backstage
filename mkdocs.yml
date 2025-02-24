@@ -9,4 +9,4 @@ plugins:
 docs_dir: "docs"  # Ruta a la carpeta donde están tus archivos .md
 
 repo_url: "https://github.com/LuisMalpica93/Backstage"  # URL del repositorio de GitHub
-edit_uri: "edit/main/docs/"  # URL para editar los archivos en GitHub
+edit_uri: "edit/main/"  # URL para editar los archivos en GitHub
