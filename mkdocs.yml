@@ -1,8 +1,12 @@
-site_name: "Documentación de APIs"
+site_name: "Documentación de APIs"  # Nombre del sitio de documentación
 nav:
-  - Home: index.md
-  - Refresh Token API: refresh-token.md
+  - Home: index.md  # Página principal
+  - Refresh Token API: refresh-token.md  # Documentación específica de la API
+
 plugins:
-  - techdocs-core
-repo_url: "https://github.com/LuisMalpica93/Backstage"
-edit_uri: "edit/main/docs/"
+  - techdocs-core  # Habilita el plugin TechDocs para integrar con Backstage
+
+docs_dir: "docs"  # Ruta a la carpeta donde están tus archivos .md
+
+repo_url: "https://github.com/LuisMalpica93/Backstage"  # URL del repositorio de GitHub
+edit_uri: "edit/main/docs/"  # URL para editar los archivos en GitHub
