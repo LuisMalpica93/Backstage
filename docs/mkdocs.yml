@@ -4,3 +4,5 @@ nav:
   - Refresh Token API: refresh-token.md
 plugins:
   - techdocs-core
+repo_url: "https://github.com/LuisMalpica93/Backstage"
+edit_uri: "edit/main/docs/"
