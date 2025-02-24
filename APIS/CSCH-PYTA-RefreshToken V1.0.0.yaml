@@ -3,8 +3,6 @@ kind: API
 metadata:
   name: CSCH-PYTA-RefreshToken
   description: This service provides a refresh token to obtain a new access token when the current one expires.
-  annotations:
-    backstage.io/techdocs-ref: dir:docs
 spec:
   type: openapi
   lifecycle: experimental
