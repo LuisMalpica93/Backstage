@@ -29,7 +29,3 @@ spec:
     - https://github.com/LuisMalpica93/Backstage/blob/main/APIS/CSCH-PTYA-SEC-UserRecovery%20V1.0.0.yaml
     - https://github.com/LuisMalpica93/Backstage/blob/main/APIS/CSCH-PTYA-SEC-PasswordRecoveryManagement%20V1.0.0.yaml
     - https://github.com/LuisMalpica93/Backstage/blob/main/APIS/ITMG-OPGW-SEC-CryptoKeyExchange%20V1.0.0.yaml
-
-    # Documentación
-    - https://github.com/LuisMalpica93/Backstage/blob/main/docs/index.md
-    - https://github.com/LuisMalpica93/Backstage/blob/main/docs/refresh-token.md
