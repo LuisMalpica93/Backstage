@@ -1,6 +1,3 @@
-
-📄 **`docs/mkdocs.yml`** (Configuración de TechDocs)
-```yaml
 site_name: "Documentación de APIs"
 nav:
   - Home: index.md
