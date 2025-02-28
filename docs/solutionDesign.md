@@ -8,7 +8,7 @@
 Versión 1.0 Dic 05, 2024
 
 
-![](https://web-api.textin.com/ocr_image/external/38200b2df10f1023.jpg)
+![](./assets/invexLogo.jpg)
 
 ## Control de cambios 
 
@@ -21,7 +21,7 @@ Versión 1.0 Dic 05, 2024
 
 
 
-![](https://web-api.textin.com/ocr_image/external/afaa76e4253ee4af.jpg)
+![](./assets/invexLogo.jpg)
 
 Contenido
 
@@ -54,7 +54,7 @@ Flujo de la solución​........................................................
 12. Referencias de arquitectura​8
 
 
-![](https://web-api.textin.com/ocr_image/external/812eb5bdcaec3e82.jpg)
+![](./assets/invexLogo.jpg)
 
 ## 1. Feature: Login
 
@@ -89,12 +89,12 @@ Explica cómo interactúan los microservicios en este flujo.
 Diagrama de componentes
 
 
-![](https://web-api.textin.com/ocr_image/external/965da3e25e04bfd7.jpg)
+![](./assets/diagrama1.jpg)
 
 Diagrama de contexto 
 
 
-![](https://web-api.textin.com/ocr_image/external/01a5a7566c4b9de0.jpg)
+![](./assets/invexLogo.jpg)
 
 
 ![](https://web-api.textin.com/ocr_image/external/54038d04d4549146.jpg)
@@ -104,10 +104,10 @@ Flujo de la solución
 Diagrama de Secuencia:
 
 
-![](https://web-api.textin.com/ocr_image/external/caa0fc3483f55553.jpg)
+![](./assets/invexLogo.jpg)
 
 
-![](https://web-api.textin.com/ocr_image/external/27c436bb7c9423fb.jpg)
+![](./assets/diagrama3.jpg)
 
 [Descripción de los pasos del diagrama]
 
