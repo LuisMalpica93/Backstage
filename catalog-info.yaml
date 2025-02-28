@@ -4,7 +4,7 @@ metadata:
   name: invex-catalog
   description: Catálogo centralizado de Invex
   annotations:
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: dir:./docs
 spec:
   targets:
     # ----------------------------------------
