@@ -6,7 +6,5 @@ nav:
 plugins:
   - techdocs-core  # Habilita el plugin TechDocs para integrar con Backstage
 
-docs_dir: .  # Indicando que los archivos están en la raíz del proyecto, sin necesidad de especificar 'docs'
-
 repo_url: https://github.com/LuisMalpica93/Backstage/tree/main/docs  # URL de tu repositorio en GitHub
 edit_uri: https://github.com/LuisMalpica93/Backstage/edit/main/docs  # URL para editar los documentos directamente
