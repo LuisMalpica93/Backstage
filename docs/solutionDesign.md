@@ -1,5 +1,5 @@
 
-![](https://web-api.textin.com/ocr_image/external/ab9b053cae4c08c0.jpg)
+![](./assets/invexLogo.jpg)
 
 # Solution Design
 
