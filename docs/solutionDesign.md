@@ -97,7 +97,7 @@ Diagrama de contexto
 ![](./assets/invexLogo.jpg)
 
 
-![](https://web-api.textin.com/ocr_image/external/54038d04d4549146.jpg)
+![](./assets/diagrama2.JPG)
 
 Flujo de la solución
 
