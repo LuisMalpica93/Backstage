@@ -89,7 +89,7 @@ Explica cómo interactúan los microservicios en este flujo.
 Diagrama de componentes
 
 
-![](./assets/diagrama1.jpg)
+![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/diagrama1.jpg)
 
 Diagrama de contexto 
 
