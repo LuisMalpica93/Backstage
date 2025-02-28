@@ -1,5 +1,5 @@
 
-![](./assets/invexLogo.jpg)
+![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
 
 # Solution Design
 
