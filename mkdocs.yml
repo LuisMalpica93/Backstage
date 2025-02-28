@@ -2,6 +2,7 @@ site_name: "Documentación de APIs"  # Nombre del sitio de documentación
 nav:
   - Home: index.md  # Página principal
   - Refresh Token API: refresh-token.md  # Documentación específica de la API
+  - Solution Design: solutionDesign.md  # Documentación Solution Design
 
 plugins:
   - techdocs-core  # Habilita el plugin TechDocs para integrar con Backstage
