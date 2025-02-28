@@ -1,6 +1,6 @@
-# Documentación de APIs
+# Documentación de Invex ONE
 
-Bienvenido a la documentación técnica de nuestras APIs en Backstage.
+Bienvenido a la documentación técnica de Invex ONE
 
 ## 📌 APIs disponibles
 - [CSCH-PYTA-RefreshToken](refresh-token.md)
