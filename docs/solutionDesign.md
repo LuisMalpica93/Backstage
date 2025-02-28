@@ -8,7 +8,7 @@
 Versión 1.0 Dic 05, 2024
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
+![](./assets/invexLogo.jpg)
 
 ## Control de cambios 
 
@@ -21,7 +21,7 @@ Versión 1.0 Dic 05, 2024
 
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
+![](./assets/invexLogo.jpg)
 
 Contenido
 
@@ -54,7 +54,7 @@ Flujo de la solución​........................................................
 12. Referencias de arquitectura​8
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
+![](./assets/invexLogo.jpg)
 
 ## 1. Feature: Login
 
@@ -89,25 +89,25 @@ Explica cómo interactúan los microservicios en este flujo.
 Diagrama de componentes
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/diagrama1.jpg)
+![](./assets/diagrama1.jpg)
 
 Diagrama de contexto 
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
+![](./assets/invexLogo.jpg)
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/diagrama2.JPG)
+![](./assets/diagrama2.JPG)
 
 Flujo de la solución
 
 Diagrama de Secuencia:
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/invexLogo.jpg)
+![](./assets/invexLogo.jpg)
 
 
-![](https://github.com/LuisMalpica93/Backstage/blob/main/docs/assets/diagrama3.jpg)
+![](./assets/diagrama3.jpg)
 
 [Descripción de los pasos del diagrama]
 
